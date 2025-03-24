@@ -1,54 +1,37 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { EventsContextType, MyEvent } from "../../types/Event";
+import { useHttp } from "../../custom-hooks/useHttp";
 
 export const EventsContext = createContext<Partial<EventsContextType>>({});
 
 export const EventsProvider = (props: any) => {
 
-    const arr:MyEvent  []=[
-        {
-            id: "1",
-            name: "פסטיבל מוזיקה חיה",
-            producerEmail: "Live Events Ltd",
-            description: "פסטיבל עם הופעות של אמנים מובילים מכל העולם",
+    const { data ,error,isLoading,request } = useHttp<MyEvent[]>('/event', 'get');
+    const [events,setEvents]=useState<MyEvent[]>(data || [])
 
-        },
-        {
-            id: "2",
-            name: "סדנת יצירה לילדים",
-            producerEmail: "KidsArt Studio",
-            description: "סדנה כיפית ליצירת יצירות אמנות בצבעי מים",
+// console.log(` data: ${data}`);
+// data?.forEach(element => {
+//     console.log(element)
+// });
 
-        },
-        {
-            id: "3",
-            name: "כנס סטארט-אפים",
-            producerEmail: "TechHub",
-            description: "מפגש ליזמים, משקיעים וחובבי טכנולוגיה",
-        },
-        {
-            id: "4",
-            name: "תחרות משחקי וידאו",
-            producerEmail: "eSports League",
-            description: "למדו להכין פסטות וריזוטו כמו שפים מקצועיים",
-        },
-        {
-            id: "5",
-            name: "סדנת בישול איטלקי",
-            producerEmail: "Gourmet Academy",
-            description: "למדו להכין פסטות וריזוטו כמו שפים מקצועיים",
-        },
-      ];
-    const contextValue:EventsContextType={
-        events:arr!
-        
+// data=data?.map(e)
+    const refresh=async ()=>{
+        const response=await request();
+        if(response != null)
+            setEvents(response)
     }
+    const contextValue: EventsContextType = {
+        events:data!,
+        refresh:refresh
+
+    }
+
 
     return <EventsContext.Provider value={contextValue}>
     {/* props.children: מאפיין קבוע שמכיל את התוכן שנשלח בתוך הקומפוננטה כאשר משתמשים בה */}
-    {/* { isLoading && 'Loading...' }
+    { isLoading && 'Loading...' }
     { error && error }
-    { !error && props.children } */}
-    {props.children}
+    { !error && props.children }
+    {/* {props.children} */}
 </EventsContext.Provider>
 }

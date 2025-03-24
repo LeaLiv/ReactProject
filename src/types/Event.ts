@@ -2,13 +2,13 @@ export type MyEvent = {
     id: string,
     name: string,
     producerEmail: string,
-    description: string,
+    descripition: string,
  
 }
 
 
 export type EventsContextType = {
     events: MyEvent[],
-    // updateTask: (id: string, newTask: Task) => void,
-    // refresh: () => Promise<unknown>
+    // updateEvent: (id: string, newEvent: MyEvent) => void,
+    refresh: () => Promise<unknown>
 }
