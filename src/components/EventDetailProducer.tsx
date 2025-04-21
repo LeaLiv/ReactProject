@@ -1,3 +1,4 @@
 export const EventDetailProducer=()=>{
-   return <></>
+   return <>
+   asdfghjk</>
 }

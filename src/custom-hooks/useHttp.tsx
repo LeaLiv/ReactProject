@@ -30,20 +30,7 @@ export function useHttp<T>(url:string,method:HttpMethod){
             setIsLoading(false);
         }
     }, [method, url]);
-    /*
-    const request = useCallback(async (...params: any[]) => {
-    setIsLoading(true);
-    setIsError('');
-    try {
-        const result = await EventInstance[method]<T>(url, ...params);
-        setData(result.data);
-    } catch (error) {
-        setIsError('error while fetching data');
-    } finally {
-        setIsLoading(false);
-    }
-}, [method, url]);
-*/
+
 
     useEffect(() => {
         if (method === 'get') {
