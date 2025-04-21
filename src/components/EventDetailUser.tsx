@@ -11,7 +11,7 @@ export const EventDetailUser = () => {
     if(!event) return <h2>האירוע לא נמצא</h2>
     return <div>
         <h1>{event.name}</h1>
-        <p>{event.descripition}</p><br />
+        <p>{event.description}</p><br />
         <p><strong>אימייל המפיק:</strong>{event.producerEmail}</p>
     </div>
 }

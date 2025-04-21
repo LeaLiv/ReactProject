@@ -17,13 +17,13 @@ createRoot(document.getElementById('root')!).render(
       <EventsProvider>
         <Menu />
         <Routes>
-          <Route path='/' element={<EventListUser />}></Route>
+          <Route path='/' element={<App />}>
             <Route path='producer' element={<MenuProducer />}></Route>
             <Route path='user' element={<EventListUser />}></Route>
             <Route path='user/:id' element={<EventDetailUser />}></Route>
-            <Route path="/producers/AddProducer" element={<AddProducer />} />
-            <Route path="/producers/ProducerDetails/:email" element={<ProducerDetail />} />
-          
+            <Route path="producers/AddProducer" element={<AddProducer />} />
+            <Route path="producers/ProducerDetails/:email" element={<ProducerDetail />} />
+          </Route>
         </Routes>
       </EventsProvider>
     </BrowserRouter>

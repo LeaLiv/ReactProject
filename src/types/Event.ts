@@ -2,7 +2,7 @@ export type MyEvent = {
     id: string,
     name: string,
     producerEmail: string,
-    descripition: string,
+    description: string,
  
 }
 
